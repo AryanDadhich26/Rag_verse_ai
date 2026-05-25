@@ -1,0 +1,1 @@
+#defines request or response structure
