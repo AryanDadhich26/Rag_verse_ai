@@ -14,5 +14,8 @@ app.add_middleware(
 
     allow_headers=["*"],
 )
+@app.get("/")
+def home():
+    return {"message": "RAGVerse AI Backend Running"}
 app.include_router(upload_router)
 app.include_router(query_router)

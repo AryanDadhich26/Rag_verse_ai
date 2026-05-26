@@ -1,6 +1,6 @@
 from app.services.llm_service import llm
 def generate_response(query, retrieved_chunks):
-    context="\n\n".join(retrieved_chunks)
+    context="\n\n".join([item["chunk"] for item in retrieved_chunks])
     prompt = f"""
         You are an intelligent AI assistant.
 

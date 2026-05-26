@@ -13,5 +13,15 @@ def retrieve_chunks(query:str, top_k: int=3):
         n_results=top_k
     )
 
-    retrieved_chunks=results["documents"][0]
+    documents=results["documents"][0]
+    distances=results["distances"][0]
+
+    retrieved_chunks=[]
+    for doc,distance in zip(documents, distances):
+        similarity_score = round(1-distance, 3)
+
+        retrieved_chunks.append({
+            "chunk": doc,
+            "score": similarity_score
+        })
     return retrieved_chunks

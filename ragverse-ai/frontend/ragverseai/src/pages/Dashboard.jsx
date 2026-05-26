@@ -1,41 +1,44 @@
+import { useState } from "react";
+
 import UploadPanel from "../components/UploadPanel";
+import QueryPanel from "../components/QueryPanel";
+import ResponseViewer from "../components/ResponseViewer";
+import PipelineVisualizer from "../components/PipelineVisualizar";
+import QueryHistory from "../components/QueryHistory";
 function Dashboard(){
+    const[responseData, setResponseData] = useState(null);
+    const[queryHistory, setQueryHistory] = useState([]);
     return (
         <div>
-        <h1 className="text-3xl font-bold mb-6">
-        RAG Comparison Dashboard
-      </h1>
+        
+          <h1 className="text-3xl font-bold mb-6">
+          RAG Comparison Dashboard
+          </h1>
 
-      <div className="grid grid-cols-2 gap-6">
+                <div className="grid grid-cols-2 gap-6 mb-6">
 
-        {/* <div className="bg-white p-6 rounded-xl shadow"> */}
+                    <UploadPanel />
 
-          {/* <h2 className="text-xl font-semibold mb-4">
-            Upload Documents
-          </h2>
+                    <QueryPanel
+                        setResponseData={setResponseData}
+                        queryHistory={queryHistory}
+                        setQueryHistory={setQueryHistory}
+                    />
 
-          <p>
-            Upload PDFs and datasets for RAG comparison.
-          </p>
+                </div>
 
+              <ResponseViewer
+                  responseData={responseData}
+              />
+              <div className="mt-6">
+                <PipelineVisualizer />
+              </div>
+                <div className="mt-6">
+                    <QueryHistory
+                        queryHistory={queryHistory}
+                    />
+                </div>
         </div>
-
-        <div className="bg-white p-6 rounded-xl shadow">
-
-          <h2 className="text-xl font-semibold mb-4">
-            Query System
-          </h2>
-
-          <p>
-            Ask questions and compare RAG outputs.
-          </p>
-
-        </div> */}
-        <UploadPanel />
-
-      </div>
-
-    </div>
 
 
     );
