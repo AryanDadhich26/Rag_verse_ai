@@ -1,21 +1,38 @@
 import { useState } from "react";
 import axios from "axios"
 
-function QueryPanel({setResponseData,queryHistory,setQueryHistory}){
+function QueryPanel({setResponseData,queryHistory,setQueryHistory,setComparisonData}){
     const [query, setQuery]=useState("");
+    const [selectedRag, setSelectedRag]=useState("naive");
     const [loading, setLoading]=useState(false);
-
     const handleQuery=async()=>{
         if (!query) return;
         setLoading(true)
         try{
-            const response = await axios.post("https://potential-space-dollop-x55g5qqq7wv7cv7qg-8000.app.github.dev/query",
+            const endpoint = selectedRag === "hybrid"
+
+                                ? "https://potential-space-dollop-x55g5qqq7wv7cv7qg-8000.app.github.dev/hybrid-query"
+
+                                : selectedRag === "compare"
+
+                                ? "https://potential-space-dollop-x55g5qqq7wv7cv7qg-8000.app.github.dev/compare-rags"
+
+                                : "https://potential-space-dollop-x55g5qqq7wv7cv7qg-8000.app.github.dev/query";
+            const response = await axios.post(endpoint,
                 {
                     query: query
                 }
             );
+            console.log(response.data)
+            if (selectedRag === "compare") {
 
-            setResponseData(response.data);
+                setComparisonData(response.data);
+
+            } else {
+
+                setResponseData(response.data);
+
+            }
             setQueryHistory((prev)=>[
                 query,
                 ...prev
@@ -33,7 +50,24 @@ function QueryPanel({setResponseData,queryHistory,setQueryHistory}){
             <h2 className="text-2xl font-bold mb-4">
                 Ask Questions
             </h2>
+            <select
+                value={selectedRag}
+                onChange={(e) => setSelectedRag(e.target.value)}
+                className="mb-4 p-2 border rounded-lg"
+            >
 
+                <option value="naive">
+                    Naive RAG
+                </option>
+
+                <option value="hybrid">
+                    Hybrid RAG
+                </option>
+
+                <option value="compare">
+                    Compare RAGs
+                </option>
+            </select>
             <textarea
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}

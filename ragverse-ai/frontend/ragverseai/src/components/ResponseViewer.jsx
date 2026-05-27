@@ -71,7 +71,7 @@ function ResponseViewer({responseData}){
 
                     <p>
                         RAG Type:
-                        Naive RAG
+                        {responseData.rag_type}
                     </p>
 
                 </div>

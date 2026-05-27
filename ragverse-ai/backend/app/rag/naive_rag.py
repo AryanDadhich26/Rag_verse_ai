@@ -21,6 +21,7 @@ def run_naive_rag(query):
         "query":query,
         "retrieved_chunks":retrieved_chunks,
         "answer":answer,
+        "rag_type":"naive_rag",
         "metrics":{
             "retrieval_time":retrieval_time,
             "generation_time":generation_time,
