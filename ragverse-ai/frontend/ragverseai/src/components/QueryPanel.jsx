@@ -11,13 +11,17 @@ function QueryPanel({setResponseData,queryHistory,setQueryHistory,setComparisonD
         try{
             const endpoint = selectedRag === "hybrid"
 
-                                ? "https://potential-space-dollop-x55g5qqq7wv7cv7qg-8000.app.github.dev/hybrid-query"
+                                ? "https://congenial-chainsaw-4jjpj9995qvrcppg-8000.app.github.dev/hybrid-query"
 
                                 : selectedRag === "compare"
 
-                                ? "https://potential-space-dollop-x55g5qqq7wv7cv7qg-8000.app.github.dev/compare-rags"
+                                ? "https://congenial-chainsaw-4jjpj9995qvrcppg-8000.app.github.dev/compare-rags"
+                                
+                                :selectedRag==="Adaptive Rag"
+                                
+                                ?"https://congenial-chainsaw-4jjpj9995qvrcppg-8000.app.github.dev/adaptive-query"
 
-                                : "https://potential-space-dollop-x55g5qqq7wv7cv7qg-8000.app.github.dev/query";
+                                : "https://congenial-chainsaw-4jjpj9995qvrcppg-8000.app.github.dev/query";
             const response = await axios.post(endpoint,
                 {
                     query: query
@@ -66,6 +70,10 @@ function QueryPanel({setResponseData,queryHistory,setQueryHistory,setComparisonD
 
                 <option value="compare">
                     Compare RAGs
+                </option>
+
+                <option value="adaptive">
+                    Adaptive RAG
                 </option>
             </select>
             <textarea
