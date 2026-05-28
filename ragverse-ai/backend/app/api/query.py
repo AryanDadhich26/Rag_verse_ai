@@ -8,6 +8,7 @@ from app.rag.adaptive_rag import adaptive_rag
 from app.rag.agentic_rag import agentic_rag
 from app.rag.corrective_rag import corrective_rag
 from app.rag.self_rag import self_rag
+from app.rag.fusion_rag import fusion_rag
 router=APIRouter()
 
 class QueryRequest(BaseModel):
@@ -52,4 +53,9 @@ def corrective_query(request: QueryRequest):
 
 def self_query(request: QueryRequest):
     result=self_rag(request.query)
+    return result
+@router.post("/fusion-query")
+
+def fusion_query(request: QueryRequest):
+    result=fusion_rag(request.query)
     return result

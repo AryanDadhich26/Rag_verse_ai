@@ -131,6 +131,39 @@ function ResponseViewer({responseData}){
 
                         )
                     }
+                    {
+                        responseData.query_variations && (
+
+                            <div className="mt-4">
+
+                                <h3 className="font-bold text-purple-700 mb-2">
+
+                                    Query Variations Used
+
+                                </h3>
+
+                                <ul className="list-disc list-inside text-gray-700">
+
+                                    {
+                                        responseData.query_variations.map(
+                                            (variation, index) => (
+
+                                                <li key={index}>
+
+                                                    {variation}
+
+                                                </li>
+
+                                            )
+                                        )
+                                    }
+
+                                </ul>
+
+                            </div>
+
+                        )
+                    }
 
                 </div>
             </h2>
