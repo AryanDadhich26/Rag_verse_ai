@@ -6,6 +6,7 @@ from app.rag.hybrid_rag import hybrid_rag
 from app.rag.compare_rags import compare_rags
 from app.rag.adaptive_rag import adaptive_rag
 from app.rag.agentic_rag import agentic_rag
+from app.rag.corrective_rag import corrective_rag
 router=APIRouter()
 
 class QueryRequest(BaseModel):
@@ -40,4 +41,9 @@ def adaptive_query(request: QueryRequest):
 
 def agentic_query(request: QueryRequest):
     result=agentic_rag(request.query)
+    return result
+@router.post("/corrective-query")
+
+def corrective_query(request: QueryRequest):
+    result=corrective_rag(request.query)
     return result

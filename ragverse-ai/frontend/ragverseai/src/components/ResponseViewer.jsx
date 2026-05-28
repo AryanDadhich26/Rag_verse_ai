@@ -85,6 +85,29 @@ function ResponseViewer({responseData}){
 
                         )
                     }
+                    {
+                        responseData.retrieval_strategy && (
+
+                            <p className="text-orange-600 font-semibold">
+
+                                Retrieval Strategy:
+                                {responseData.retrieval_strategy}
+
+                            </p>
+
+                        )
+                    }
+                    {
+                        responseData.low_confidence_detected && (
+
+                            <p className="text-red-600 font-semibold">
+
+                                Low Confidence Detected → Retrieval Corrected
+
+                            </p>
+
+                        )
+                    }
 
                 </div>
             </h2>
