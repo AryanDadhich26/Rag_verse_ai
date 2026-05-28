@@ -73,6 +73,18 @@ function ResponseViewer({responseData}){
                         RAG Type:
                         {responseData.rag_type}
                     </p>
+                    {
+                        responseData.agent_decision && (
+
+                            <p className="text-purple-700 font-semibold">
+
+                                Agent Selected:
+                                {responseData.agent_decision}
+
+                            </p>
+
+                        )
+                    }
 
                 </div>
             </h2>

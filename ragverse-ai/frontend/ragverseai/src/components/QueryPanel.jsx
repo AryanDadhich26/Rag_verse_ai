@@ -20,6 +20,8 @@ function QueryPanel({setResponseData,queryHistory,setQueryHistory,setComparisonD
                                 :selectedRag==="adaptive"
                                 
                                 ?"https://congenial-chainsaw-4jjpj9995qvrcppg-8000.app.github.dev/adaptive-query"
+                                :selectedRag==="agentic"
+                                ?"https://congenial-chainsaw-4jjpj9995qvrcppg-8000.app.github.dev/agentic-query"
 
                                 : "https://congenial-chainsaw-4jjpj9995qvrcppg-8000.app.github.dev/query";
             const response = await axios.post(endpoint,
@@ -74,6 +76,9 @@ function QueryPanel({setResponseData,queryHistory,setQueryHistory,setComparisonD
 
                 <option value="adaptive">
                     Adaptive RAG
+                </option>
+                <option value="agentic">
+                    Agentic RAG
                 </option>
             </select>
             <textarea

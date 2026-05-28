@@ -5,6 +5,7 @@ from app.rag.naive_rag import run_naive_rag
 from app.rag.hybrid_rag import hybrid_rag
 from app.rag.compare_rags import compare_rags
 from app.rag.adaptive_rag import adaptive_rag
+from app.rag.agentic_rag import agentic_rag
 router=APIRouter()
 
 class QueryRequest(BaseModel):
@@ -34,4 +35,9 @@ def compare_rag_query(request: QueryRequest):
 
 def adaptive_query(request: QueryRequest):
     result=adaptive_rag(request.query)
+    return result
+@router.post("/agentic-query")
+
+def agentic_query(request: QueryRequest):
+    result=agentic_rag(request.query)
     return result
