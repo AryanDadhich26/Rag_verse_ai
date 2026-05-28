@@ -38,13 +38,11 @@ def adaptive_rag(query:str):
     retrieval_end=time.time()
     generation_start=time.time()
 
-    context = "\n".join(
-    [chunk["chunk"] for chunk in retrieved_chunks]
-    )
+    
 
     answer=generate_response(
         query=query,
-        context=context
+        retrieved_chunks=retrieved_chunks
     )
 
     generation_end=time.time()

@@ -17,7 +17,7 @@ function QueryPanel({setResponseData,queryHistory,setQueryHistory,setComparisonD
 
                                 ? "https://congenial-chainsaw-4jjpj9995qvrcppg-8000.app.github.dev/compare-rags"
                                 
-                                :selectedRag==="Adaptive Rag"
+                                :selectedRag==="adaptive"
                                 
                                 ?"https://congenial-chainsaw-4jjpj9995qvrcppg-8000.app.github.dev/adaptive-query"
 
