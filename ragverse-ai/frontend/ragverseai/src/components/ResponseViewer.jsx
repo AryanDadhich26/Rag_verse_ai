@@ -108,6 +108,29 @@ function ResponseViewer({responseData}){
 
                         )
                     }
+                    {
+                        responseData.reflection && (
+
+                            <p className="text-indigo-600 font-semibold">
+
+                                Reflection Status:
+                                {responseData.reflection}
+
+                            </p>
+
+                        )
+                    }
+                    {
+                        responseData.second_attempt_used && (
+
+                            <p className="text-red-600 font-semibold">
+
+                                Self-RAG Triggered Retry Generation
+
+                            </p>
+
+                        )
+                    }
 
                 </div>
             </h2>

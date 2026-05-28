@@ -24,6 +24,8 @@ function QueryPanel({setResponseData,queryHistory,setQueryHistory,setComparisonD
                                 ?"https://congenial-chainsaw-4jjpj9995qvrcppg-8000.app.github.dev/agentic-query"
                                 :selectedRag==="corrective"
                                 ?"https://congenial-chainsaw-4jjpj9995qvrcppg-8000.app.github.dev/corrective-query"
+                                :selectedRag==="self"
+                                ?"https://congenial-chainsaw-4jjpj9995qvrcppg-8000.app.github.dev/self-query"
 
                                 : "https://congenial-chainsaw-4jjpj9995qvrcppg-8000.app.github.dev/query";
             const response = await axios.post(endpoint,
@@ -84,6 +86,9 @@ function QueryPanel({setResponseData,queryHistory,setQueryHistory,setComparisonD
                 </option>
                 <option value="corrective">
                     Corrective RAG
+                </option>
+                <option value="self">
+                    Self RAG
                 </option>
             </select>
             <textarea
