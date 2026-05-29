@@ -226,6 +226,70 @@ function ResponseViewer({responseData}){
 
                         )
                     }
+                    {
+                        responseData.fusion_method && (
+
+                            <div className="mt-4 p-3 bg-purple-50 rounded-lg">
+
+                                <h3 className="font-bold text-purple-700">
+
+                                    Fusion Information
+
+                                </h3>
+
+                                <p>
+
+                                    Fusion Method:
+                                    {responseData.fusion_method}
+
+                                </p>
+
+                            </div>
+
+                        )
+                    }
+
+                    {
+                        responseData.query_variations && (
+
+                            <div className="mt-4 p-3 bg-blue-50 rounded-lg">
+
+                                <h3 className="font-bold text-blue-700">
+
+                                    Query Variations
+
+                                </h3>
+
+                                <ul className="list-disc ml-5">
+
+                                    {
+                                        responseData.query_variations.map(
+                                            (variation,index)=>(
+                                                <li key={index}>
+                                                    {variation}
+                                                </li>
+                                            )
+                                        )
+                                    }
+
+                                </ul>
+
+                            </div>
+
+                        )
+                    }
+                    {
+                       responseData.fusion_score && (
+
+                            <p className="text-purple-600">
+
+                                Fusion Score:
+                                {responseData.fusion_score}
+
+                            </p>
+
+                        )
+                    }
 
                 </div>
             </h2>
