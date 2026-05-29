@@ -11,25 +11,27 @@ function QueryPanel({setResponseData,queryHistory,setQueryHistory,setComparisonD
         try{
             const endpoint = selectedRag === "hybrid"
 
-                                ? "https://congenial-chainsaw-4jjpj9995qvrcppg-8000.app.github.dev/hybrid-query"
+                                ? "https://ominous-space-halibut-pjj5jqqq47g6h7gjw-8000.app.github.dev/hybrid-query"
 
                                 : selectedRag === "compare"
 
-                                ? "https://congenial-chainsaw-4jjpj9995qvrcppg-8000.app.github.dev/compare-rags"
+                                ? "https://ominous-space-halibut-pjj5jqqq47g6h7gjw-8000.app.github.dev/compare-rags"
                                 
                                 :selectedRag==="adaptive"
                                 
-                                ?"https://congenial-chainsaw-4jjpj9995qvrcppg-8000.app.github.dev/adaptive-query"
+                                ?"https://ominous-space-halibut-pjj5jqqq47g6h7gjw-8000.app.github.dev/adaptive-query"
                                 :selectedRag==="agentic"
-                                ?"https://congenial-chainsaw-4jjpj9995qvrcppg-8000.app.github.dev/agentic-query"
+                                ?"https://ominous-space-halibut-pjj5jqqq47g6h7gjw-8000.app.github.dev/agentic-query"
                                 :selectedRag==="corrective"
-                                ?"https://congenial-chainsaw-4jjpj9995qvrcppg-8000.app.github.dev/corrective-query"
+                                ?"https://ominous-space-halibut-pjj5jqqq47g6h7gjw-8000.app.github.dev/corrective-query"
                                 :selectedRag==="self"
-                                ?"https://congenial-chainsaw-4jjpj9995qvrcppg-8000.app.github.dev/self-query"
+                                ?"https://ominous-space-halibut-pjj5jqqq47g6h7gjw-8000.app.github.dev/self-query"
                                 :selectedRag==="fusion"
-                                ?"https://congenial-chainsaw-4jjpj9995qvrcppg-8000.app.github.dev/fusion-query"
+                                ?"https://ominous-space-halibut-pjj5jqqq47g6h7gjw-8000.app.github.dev/fusion-query"
+                                :selectedRag==="rerank"
+                                ?"https://ominous-space-halibut-pjj5jqqq47g6h7gjw-8000.app.github.dev/rerank-query"
 
-                                : "https://congenial-chainsaw-4jjpj9995qvrcppg-8000.app.github.dev/query";
+                                : "https://ominous-space-halibut-pjj5jqqq47g6h7gjw-8000.app.github.dev/query";
             const response = await axios.post(endpoint,
                 {
                     query: query
@@ -94,6 +96,9 @@ function QueryPanel({setResponseData,queryHistory,setQueryHistory,setComparisonD
                 </option>
                 <option value="fusion">
                     Fusion RAG
+                </option>
+                <option value="rerank">
+                    Rerank RAG
                 </option>
             </select>
             <textarea

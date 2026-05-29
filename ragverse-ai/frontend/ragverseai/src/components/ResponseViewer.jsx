@@ -164,6 +164,18 @@ function ResponseViewer({responseData}){
 
                         )
                     }
+                    {
+                        responseData.rerank_score && (
+
+                            <p className="text-purple-600">
+
+                                Re-rank Score:
+                                {chunk.rerank_score}
+
+                            </p>
+
+                        )
+                    }
 
                 </div>
             </h2>

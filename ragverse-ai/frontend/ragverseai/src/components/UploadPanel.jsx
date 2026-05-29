@@ -33,7 +33,7 @@ function UploadPanel() {
         try {
 
             const response = await axios.post(
-                "https://congenial-chainsaw-4jjpj9995qvrcppg-8000.app.github.dev/upload",
+                "https://ominous-space-halibut-pjj5jqqq47g6h7gjw-8000.app.github.dev/upload",
                 formData,
                 {
                     headers: {

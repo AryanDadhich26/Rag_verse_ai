@@ -9,6 +9,7 @@ from app.rag.agentic_rag import agentic_rag
 from app.rag.corrective_rag import corrective_rag
 from app.rag.self_rag import self_rag
 from app.rag.fusion_rag import fusion_rag
+from app.rag.rerank_rag import rerank_rag
 router=APIRouter()
 
 class QueryRequest(BaseModel):
@@ -58,4 +59,9 @@ def self_query(request: QueryRequest):
 
 def fusion_query(request: QueryRequest):
     result=fusion_rag(request.query)
+    return result
+@router.post("/rerank-query")
+
+def rerank_query(request: QueryRequest):
+    result=rerank_rag(request.query)
     return result
