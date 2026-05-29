@@ -66,7 +66,7 @@ function ResponseViewer({responseData}){
 
                     <p>
                         Chunks Retrieved:
-                        {responseData.retrieved_chunks.length}
+                        {responseData.retrieved_chunks?.length||0}
                     </p>
 
                     <p>
@@ -170,7 +170,7 @@ function ResponseViewer({responseData}){
                             <p className="text-purple-600">
 
                                 Re-rank Score:
-                                {chunk.rerank_score}
+                                {responseData.rerank_score}
 
                             </p>
 
@@ -290,6 +290,67 @@ function ResponseViewer({responseData}){
 
                         )
                     }
+                    {
+                        responseData.graph_stats && (
+
+                            <div className="mt-4 p-3 bg-purple-50 rounded-lg">
+
+                                <h3 className="font-bold text-purple-700">
+
+                                    Graph Statistics
+
+                                </h3>
+
+                                <p>
+
+                                    Nodes:
+                                    {" "}
+                                    {responseData.graph_stats.nodes}
+
+                                </p>
+
+                                <p>
+
+                                    Edges:
+                                    {" "}
+                                    {responseData.graph_stats.edges}
+
+                                </p>
+
+                            </div>
+
+                        )
+                    }
+        
+                    {
+                        Array.isArray(responseData?.matched_nodes) && (
+
+                            <div className="mt-4 p-3 bg-blue-50 rounded-lg">
+
+                                <h3 className="font-bold text-blue-700">
+
+                                    Matched Graph Nodes
+
+                                </h3>
+
+                                <ul className="list-disc ml-5">
+
+                                    {
+                                        responseData?.matched_nodes?.map(
+                                            (node,index)=>(
+                                                <li key={index}>
+                                                    {node}
+                                                </li>
+                                            )
+                                        )
+                                    }
+
+                                </ul>
+
+                            </div>
+
+                        )
+                    }
 
                 </div>
             </h2>
@@ -303,7 +364,7 @@ function ResponseViewer({responseData}){
             </h3>
             <div className="space-y-4">
 
-                {responseData.retrieved_chunks.map((chunk, index) => (
+                {responseData?.retrieved_chunks?.map((chunk, index) => (
 
                     <div
                         key={index}

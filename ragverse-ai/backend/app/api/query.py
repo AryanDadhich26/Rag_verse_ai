@@ -11,6 +11,7 @@ from app.rag.self_rag import self_rag
 from app.rag.fusion_rag import fusion_rag
 from app.rag.rerank_rag import rerank_rag
 from app.rag.multihop_rag import multihop_rag
+from app.rag.graph_rag import graph_rag
 router=APIRouter()
 
 class QueryRequest(BaseModel):
@@ -70,4 +71,9 @@ def rerank_query(request: QueryRequest):
 
 def multihop_query(request: QueryRequest):
     result=multihop_rag(request.query)
+    return result
+@router.post("/graph-query")
+
+def graph_query(request: QueryRequest):
+    result=graph_rag(request.query)
     return result
