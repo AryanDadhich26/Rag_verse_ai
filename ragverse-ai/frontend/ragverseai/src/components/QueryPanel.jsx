@@ -30,8 +30,10 @@ function QueryPanel({setResponseData,queryHistory,setQueryHistory,setComparisonD
                                 ?"https://ominous-space-halibut-pjj5jqqq47g6h7gjw-8000.app.github.dev/fusion-query"
                                 :selectedRag==="rerank"
                                 ?"https://ominous-space-halibut-pjj5jqqq47g6h7gjw-8000.app.github.dev/rerank-query"
+                                :selectedRag==="multihop"
+                                ?"https://ominous-space-halibut-pjj5jqqq47g6h7gjw-8000.app.github.dev/multihop-query"
 
-                                : "https://ominous-space-halibut-pjj5jqqq47g6h7gjw-8000.app.github.dev/query";
+                                :"https://ominous-space-halibut-pjj5jqqq47g6h7gjw-8000.app.github.dev/query";
             const response = await axios.post(endpoint,
                 {
                     query: query
@@ -99,6 +101,9 @@ function QueryPanel({setResponseData,queryHistory,setQueryHistory,setComparisonD
                 </option>
                 <option value="rerank">
                     Rerank RAG
+                </option>
+                <option value="multihop">
+                    Multi Hop RAG
                 </option>
             </select>
             <textarea

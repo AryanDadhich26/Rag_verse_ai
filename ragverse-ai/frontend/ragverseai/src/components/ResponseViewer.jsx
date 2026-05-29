@@ -176,6 +176,56 @@ function ResponseViewer({responseData}){
 
                         )
                     }
+                    {
+                        responseData.followup_query && (
+
+                            <div className="mt-4 p-3 bg-blue-50 rounded-lg">
+
+                                <h3 className="font-bold text-blue-700">
+
+                                    Follow-Up Query
+
+                                </h3>
+
+                                <p>
+
+                                    {responseData.followup_query}
+
+                                </p>
+
+                            </div>
+
+                        )
+                    }
+                    {
+                        responseData.hop1_chunks && (
+
+                            <div className="mt-4 p-3 bg-green-50 rounded-lg">
+
+                                <h3 className="font-bold text-green-700">
+
+                                    Multi-Hop Statistics
+
+                                </h3>
+
+                                <p>
+
+                                    Hop 1 Chunks:
+                                    {responseData.hop1_chunks}
+
+                                </p>
+
+                                <p>
+
+                                    Hop 2 Chunks:
+                                    {responseData.hop2_chunks}
+
+                                </p>
+
+                            </div>
+
+                        )
+                    }
 
                 </div>
             </h2>
