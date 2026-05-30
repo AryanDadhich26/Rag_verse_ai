@@ -20,6 +20,7 @@ function EvaluationDashboard({evaluationData}){
                         <th className="border p-2">Latency</th>
                         <th className="border p-2">Chunks</th>
                         <th className="border p-2">Answer Length</th>
+                        <th className="border p-2">Word Count</th>
                         <th className="border p-2">Time</th>
 
                     </tr>
@@ -47,6 +48,9 @@ function EvaluationDashboard({evaluationData}){
 
                                     <td className="border p-2">
                                         {item.answer_length}
+                                    </td>
+                                    <td className="border p-2">
+                                        {item.answer_words}
                                     </td>
 
                                     <td className="border p-2">

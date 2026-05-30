@@ -7,11 +7,13 @@ import PipelineVisualizer from "../components/PipelineVisualizar";
 import QueryHistory from "../components/QueryHistory";
 import CompareView from "../components/CompareView";
 import EvaluationDashboard from "../components/EvaluationDashboard";
+import QualityLeaderboard from "../components/QualityLeaderboard";
 function Dashboard(){
     const[responseData, setResponseData] = useState(null);
     const[queryHistory, setQueryHistory] = useState([]);
     const [comparisonData, setComparisonData] = useState(null);
     const [evaluationData, setEvaluationData] = useState(null);
+    const [benchmarkData,setBenchmarkData]=useState(null);
     return (
         <div>
         
@@ -29,6 +31,7 @@ function Dashboard(){
                         queryHistory={queryHistory}
                         setQueryHistory={setQueryHistory}
                         setEvaluationData={setEvaluationData}
+                        setBenchmarkData={setBenchmarkData}
                     />
 
                 </div>
@@ -41,6 +44,9 @@ function Dashboard(){
               />
               <EvaluationDashboard
                 evaluationData={evaluationData}
+              />
+              <QualityLeaderboard
+                benchmarkData={benchmarkData}
               />
               <div className="mt-6">
                 <PipelineVisualizer />

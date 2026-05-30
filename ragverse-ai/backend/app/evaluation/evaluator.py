@@ -5,14 +5,14 @@ def evaluate_response(response):
     latency_score=calculate_latency_score(metrics["retrieval_time"],metrics["generation_time"])
     answer_length=len(response.get("answer",""))
     chunk_count=len(response.get("retrieved_chunks",[]))
-
+    answer_word=len(response.get("answer","").split())
     return {
         "rag_type":response["rag_type"],
         "latency_score":
         latency_score,
         "answer_length":answer_length,
         "chunk_count":chunk_count,
-
+        "answer_words":answer_word,
         "retrieval_time":
         metrics["retrieval_time"],
 

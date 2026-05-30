@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios"
 
-function QueryPanel({setResponseData,queryHistory,setQueryHistory,setComparisonData,setEvaluationData}){
+function QueryPanel({setResponseData,queryHistory,setQueryHistory,setComparisonData,setEvaluationData, setBenchmarkData}){
     const [query, setQuery]=useState("");
     const [selectedRag, setSelectedRag]=useState("naive");
     const [loading, setLoading]=useState(false);
@@ -36,6 +36,8 @@ function QueryPanel({setResponseData,queryHistory,setQueryHistory,setComparisonD
                                 ?"https://bookish-chainsaw-4jjpj9995j65fjpwp-8000.app.github.dev/graph-query"
                                 :selectedRag==="evaluate"
                                 ?"https://bookish-chainsaw-4jjpj9995j65fjpwp-8000.app.github.dev/evaluate-all"
+                                :selectedRag==="benchmark"
+                                ?"https://bookish-chainsaw-4jjpj9995j65fjpwp-8000.app.github.dev/evaluate-quality-benchmark"
 
                                 :"https://bookish-chainsaw-4jjpj9995j65fjpwp-8000.app.github.dev/query";
             const response = await axios.post(endpoint,
@@ -50,6 +52,10 @@ function QueryPanel({setResponseData,queryHistory,setQueryHistory,setComparisonD
 
             } else if(selectedRag==="evaluate") {
                 setEvaluationData(response.data);
+            } else if(selectedRag==="benchmark") {
+                console.log("Benchmark Data:");
+                console.log(response.data);
+                setBenchmarkData(response.data);
             }else {
 
                 setResponseData(response.data);
@@ -116,6 +122,9 @@ function QueryPanel({setResponseData,queryHistory,setQueryHistory,setComparisonD
                 </option>
                 <option value="evaluate">
                     Evaluate All RAGs
+                </option>
+                <option value="benchmark">
+                    Quality Benchmark
                 </option>
             </select>
             <textarea
