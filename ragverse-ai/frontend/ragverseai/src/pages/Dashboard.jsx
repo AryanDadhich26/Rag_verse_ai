@@ -6,10 +6,12 @@ import ResponseViewer from "../components/ResponseViewer";
 import PipelineVisualizer from "../components/PipelineVisualizar";
 import QueryHistory from "../components/QueryHistory";
 import CompareView from "../components/CompareView";
+import EvaluationDashboard from "../components/EvaluationDashboard";
 function Dashboard(){
     const[responseData, setResponseData] = useState(null);
     const[queryHistory, setQueryHistory] = useState([]);
     const [comparisonData, setComparisonData] = useState(null);
+    const [evaluationData, setEvaluationData] = useState(null);
     return (
         <div>
         
@@ -26,6 +28,7 @@ function Dashboard(){
                         setComparisonData={setComparisonData}
                         queryHistory={queryHistory}
                         setQueryHistory={setQueryHistory}
+                        setEvaluationData={setEvaluationData}
                     />
 
                 </div>
@@ -35,6 +38,9 @@ function Dashboard(){
               />
               <CompareView
                 comparisonData={comparisonData}
+              />
+              <EvaluationDashboard
+                evaluationData={evaluationData}
               />
               <div className="mt-6">
                 <PipelineVisualizer />

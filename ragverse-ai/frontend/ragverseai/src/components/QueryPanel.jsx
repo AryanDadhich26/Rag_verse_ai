@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios"
 
-function QueryPanel({setResponseData,queryHistory,setQueryHistory,setComparisonData}){
+function QueryPanel({setResponseData,queryHistory,setQueryHistory,setComparisonData,setEvaluationData}){
     const [query, setQuery]=useState("");
     const [selectedRag, setSelectedRag]=useState("naive");
     const [loading, setLoading]=useState(false);
@@ -11,31 +11,33 @@ function QueryPanel({setResponseData,queryHistory,setQueryHistory,setComparisonD
         try{
             const endpoint = selectedRag === "hybrid"
 
-                                ? "https://ominous-space-halibut-pjj5jqqq47g6h7gjw-8000.app.github.dev/hybrid-query"
+                                ? "https://bookish-chainsaw-4jjpj9995j65fjpwp-8000.app.github.dev/hybrid-query"
 
                                 : selectedRag === "compare"
 
-                                ? "https://ominous-space-halibut-pjj5jqqq47g6h7gjw-8000.app.github.dev/compare-rags"
+                                ? "https://bookish-chainsaw-4jjpj9995j65fjpwp-8000.app.github.dev/compare-rags"
                                 
                                 :selectedRag==="adaptive"
                                 
-                                ?"https://ominous-space-halibut-pjj5jqqq47g6h7gjw-8000.app.github.dev/adaptive-query"
+                                ?"https://bookish-chainsaw-4jjpj9995j65fjpwp-8000.app.github.dev/adaptive-query"
                                 :selectedRag==="agentic"
-                                ?"https://ominous-space-halibut-pjj5jqqq47g6h7gjw-8000.app.github.dev/agentic-query"
+                                ?"https://bookish-chainsaw-4jjpj9995j65fjpwp-8000.app.github.dev/agentic-query"
                                 :selectedRag==="corrective"
-                                ?"https://ominous-space-halibut-pjj5jqqq47g6h7gjw-8000.app.github.dev/corrective-query"
+                                ?"https://bookish-chainsaw-4jjpj9995j65fjpwp-8000.app.github.dev/corrective-query"
                                 :selectedRag==="self"
-                                ?"https://ominous-space-halibut-pjj5jqqq47g6h7gjw-8000.app.github.dev/self-query"
+                                ?"https://bookish-chainsaw-4jjpj9995j65fjpwp-8000.app.github.dev/self-query"
                                 :selectedRag==="fusion"
-                                ?"https://ominous-space-halibut-pjj5jqqq47g6h7gjw-8000.app.github.dev/fusion-query"
+                                ?"https://bookish-chainsaw-4jjpj9995j65fjpwp-8000.app.github.dev/fusion-query"
                                 :selectedRag==="rerank"
-                                ?"https://ominous-space-halibut-pjj5jqqq47g6h7gjw-8000.app.github.dev/rerank-query"
+                                ?"https://bookish-chainsaw-4jjpj9995j65fjpwp-8000.app.github.dev/rerank-query"
                                 :selectedRag==="multihop"
-                                ?"https://ominous-space-halibut-pjj5jqqq47g6h7gjw-8000.app.github.dev/multihop-query"
+                                ?"https://bookish-chainsaw-4jjpj9995j65fjpwp-8000.app.github.dev/multihop-query"
                                 :selectedRag==="graph"
-                                ?"https://ominous-space-halibut-pjj5jqqq47g6h7gjw-8000.app.github.dev/graph-query"
+                                ?"https://bookish-chainsaw-4jjpj9995j65fjpwp-8000.app.github.dev/graph-query"
+                                :selectedRag==="evaluate"
+                                ?"https://bookish-chainsaw-4jjpj9995j65fjpwp-8000.app.github.dev/evaluate-all"
 
-                                :"https://ominous-space-halibut-pjj5jqqq47g6h7gjw-8000.app.github.dev/query";
+                                :"https://bookish-chainsaw-4jjpj9995j65fjpwp-8000.app.github.dev/query";
             const response = await axios.post(endpoint,
                 {
                     query: query
@@ -46,7 +48,9 @@ function QueryPanel({setResponseData,queryHistory,setQueryHistory,setComparisonD
 
                 setComparisonData(response.data);
 
-            } else {
+            } else if(selectedRag==="evaluate") {
+                setEvaluationData(response.data);
+            }else {
 
                 setResponseData(response.data);
 
@@ -109,6 +113,9 @@ function QueryPanel({setResponseData,queryHistory,setQueryHistory,setComparisonD
                 </option>
                 <option value="graph">
                     Graph RAG
+                </option>
+                <option value="evaluate">
+                    Evaluate All RAGs
                 </option>
             </select>
             <textarea
