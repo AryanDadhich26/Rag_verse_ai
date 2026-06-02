@@ -31,6 +31,22 @@ def multihop_rag(query:str):
     followup_query=generate_followup_query(
         query
     )
+    pipeline_steps=[]
+
+    pipeline_steps.append({
+        "step":"Original Query",
+        "data":query
+    })
+
+    pipeline_steps.append(
+        {
+            "step":"Hop 1 retrieval",
+            "data":{
+                "chunks_found":len(hop1_chunks)
+            }
+        }
+    )
+
     if (
         not followup_query
         or "could not find" in followup_query.lower()
@@ -39,11 +55,24 @@ def multihop_rag(query:str):
             query +
             " architecture workflow implementation"
         )
+    pipeline_steps.append(
+        {
+            "step":"Generated Follow-Up query",
+            "data":followup_query
+        }
+    )
     hop2_chunks=retrieve_chunks(
         query=followup_query,
         top_k=3
     )
-
+    pipeline_steps.append(
+        {
+            "step":"Hop 2 Retrieval",
+            "data":{
+                "chunks_found":len(hop2_chunks)
+            }
+        }
+    )
     combined_chunks=hop1_chunks+hop2_chunks
     unique_chunks = {}
 
@@ -57,6 +86,13 @@ def multihop_rag(query:str):
 
     final_chunks = list(
         unique_chunks.values()
+    )
+
+    pipeline_steps.append(
+        {
+            "step":"Merged Context",
+            "data":len(final_chunks)
+        }
     )
     retrieval_time=round(time.time()-retrieval_start,3)
     generation_start=time.time()
@@ -75,6 +111,7 @@ def multihop_rag(query:str):
         "retrieved_chunks": final_chunks,
         "answer": answer,
         "rag_type": "multihop_rag",
+        "pipeline_steps":pipeline_steps,
         "metrics": {
             "retrieval_time": retrieval_time,
 

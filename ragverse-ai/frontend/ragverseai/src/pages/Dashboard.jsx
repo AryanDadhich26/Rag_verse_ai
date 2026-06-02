@@ -8,6 +8,7 @@ import QueryHistory from "../components/QueryHistory";
 import CompareView from "../components/CompareView";
 import EvaluationDashboard from "../components/EvaluationDashboard";
 import QualityLeaderboard from "../components/QualityLeaderboard";
+import PipelineExplorer from "../components/PipelineExplorer";
 function Dashboard(){
     const[responseData, setResponseData] = useState(null);
     const[queryHistory, setQueryHistory] = useState([]);
@@ -38,6 +39,11 @@ function Dashboard(){
 
               <ResponseViewer
                   responseData={responseData}
+              />
+              <PipelineExplorer
+                  pipelineSteps={
+                    responseData?.pipeline_steps
+                  }
               />
               <CompareView
                 comparisonData={comparisonData}

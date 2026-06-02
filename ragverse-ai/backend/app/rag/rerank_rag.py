@@ -39,7 +39,13 @@ def rerank_chunks(query,chunks):
 def rerank_rag(query: str):
     total_start=time.time()
     retrieval_start = time.time()
-
+    pipeline_steps=[]
+    pipeline_steps.append(
+        {
+            "Step":"Original Query",
+            "data":query
+        }
+    )
 
     # Retrieve more chunks initially
 
@@ -49,6 +55,15 @@ def rerank_rag(query: str):
 
         top_k=8
 
+    )
+
+    pipeline_steps.append(
+        {
+            "step":"Initial Retrieval",
+            "data":{
+                "chunk_found":len(retrieved_chunks)
+            }
+        }
     )
 
 
@@ -61,11 +76,37 @@ def rerank_rag(query: str):
         retrieved_chunks
 
     )
+    rerank_data=[]
+
+    for chunk in reranked_chunks:
+        rerank_data.append(
+            {
+                "score":chunk["rerank_score"],
+                "preview":chunk["chunk"][:80]+"..."
+            }
+        )
+    pipeline_steps.append(
+        {
+            "step":"Reranking Scores",
+            "data":rerank_data
+        }
+    )
 
 
     # Take top reranked chunks
 
     final_chunks = reranked_chunks[:5]
+    pipeline_steps.append(
+        {
+            "step":"Top Chunks Selected",
+            "data":[
+                {
+                    "score":chunk["rerank_score"]
+                }
+                for chunk in final_chunks
+            ]
+        }
+    )
 
 
     retrieval_time = round(
@@ -116,6 +157,7 @@ def rerank_rag(query: str):
         "answer": answer,
 
         "rag_type": "rerank_rag",
+        "pipeline_steps":pipeline_steps,
 
         "metrics": {
 

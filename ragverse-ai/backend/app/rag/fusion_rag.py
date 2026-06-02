@@ -31,8 +31,24 @@ def fusion_rag(query: str):
     total_start=time.time()
     retrieval_start=time.time()
     query_variations=generate_query_variations(query)
+    pipeline_steps=[]
+
+    pipeline_steps.append(
+        {
+            "step":"Original Query",
+            "data":query
+        }
+    )
+
+    pipeline_steps.append(
+        {
+            "step":"Generated Query Variations",
+            "data":query_variations
+        }
+    )
 
     results_lists=[]
+    retrieval_logs=[]
 
     for q in query_variations:
         results=retrieve_chunks(
@@ -41,10 +57,20 @@ def fusion_rag(query: str):
         )
 
         results_lists.append(results)
+        retrieval_logs.append({
+            "query":q,
+            "chunks_found":len(results),
+            "top_score":round(results[0]["score"],3) if results else 0
+        })
     fused_scores=reciprocal_rank_fusion(
         results_lists
     )
-
+    pipeline_steps.append(
+        {
+            "step":"Retrieval Results",
+            "data":retrieval_logs
+        }
+    )
     sorted_chunks=sorted(
         fused_scores.items(),
         key=lambda x:x[1],
@@ -57,6 +83,21 @@ def fusion_rag(query: str):
             "chunk":chunk_text,
             "fusion_score":round(score,4)
         })
+
+    pipeline_steps.append(
+        {
+            "step":"RRF Ranking",
+            "data":[
+                {
+                    "chunk_preview":chunk["chunk"][:80]+"...",
+
+                    "funsion_score":chunk["fusion_score"]
+                }
+
+                for chunk in final_chunks
+            ]
+        }
+    )
     # unique_chunks={}
     # for item in all_results:
 
@@ -69,7 +110,13 @@ def fusion_rag(query: str):
 
 
     # final_chunks = list(unique_chunks.values())
+    pipeline_steps.append(
+        {
+            "step":"Final context chunks",
+            "data":len(final_chunks)
 
+        }
+    )
 
     retrieval_time = round(
 
@@ -119,6 +166,7 @@ def fusion_rag(query: str):
         "answer": answer,
 
         "rag_type": "fusion_rag",
+        "pipeline_steps":pipeline_steps,
 
         "metrics": {
 

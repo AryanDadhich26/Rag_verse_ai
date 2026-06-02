@@ -11,35 +11,35 @@ function QueryPanel({setResponseData,queryHistory,setQueryHistory,setComparisonD
         try{
             const endpoint = selectedRag === "hybrid"
 
-                                ? "https://bookish-chainsaw-4jjpj9995j65fjpwp-8000.app.github.dev/hybrid-query"
+                                ? "https://ominous-computing-machine-699x9777xjj62r7qx-8000.app.github.dev/hybrid-query"
 
                                 : selectedRag === "compare"
 
-                                ? "https://bookish-chainsaw-4jjpj9995j65fjpwp-8000.app.github.dev/compare-rags"
+                                ? "https://ominous-computing-machine-699x9777xjj62r7qx-8000.app.github.dev/compare-rags"
                                 
                                 :selectedRag==="adaptive"
                                 
-                                ?"https://bookish-chainsaw-4jjpj9995j65fjpwp-8000.app.github.dev/adaptive-query"
+                                ?"https://ominous-computing-machine-699x9777xjj62r7qx-8000.app.github.dev/adaptive-query"
                                 :selectedRag==="agentic"
-                                ?"https://bookish-chainsaw-4jjpj9995j65fjpwp-8000.app.github.dev/agentic-query"
+                                ?"https://ominous-computing-machine-699x9777xjj62r7qx-8000.app.github.dev/agentic-query"
                                 :selectedRag==="corrective"
-                                ?"https://bookish-chainsaw-4jjpj9995j65fjpwp-8000.app.github.dev/corrective-query"
+                                ?"https://ominous-computing-machine-699x9777xjj62r7qx-8000.app.github.dev/corrective-query"
                                 :selectedRag==="self"
-                                ?"https://bookish-chainsaw-4jjpj9995j65fjpwp-8000.app.github.dev/self-query"
+                                ?"https://ominous-computing-machine-699x9777xjj62r7qx-8000.app.github.dev/self-query"
                                 :selectedRag==="fusion"
-                                ?"https://bookish-chainsaw-4jjpj9995j65fjpwp-8000.app.github.dev/fusion-query"
+                                ?"https://ominous-computing-machine-699x9777xjj62r7qx-8000.app.github.dev/fusion-query"
                                 :selectedRag==="rerank"
-                                ?"https://bookish-chainsaw-4jjpj9995j65fjpwp-8000.app.github.dev/rerank-query"
+                                ?"https://ominous-computing-machine-699x9777xjj62r7qx-8000.app.github.dev/rerank-query"
                                 :selectedRag==="multihop"
-                                ?"https://bookish-chainsaw-4jjpj9995j65fjpwp-8000.app.github.dev/multihop-query"
+                                ?"https://ominous-computing-machine-699x9777xjj62r7qx-8000.app.github.dev/multihop-query"
                                 :selectedRag==="graph"
-                                ?"https://bookish-chainsaw-4jjpj9995j65fjpwp-8000.app.github.dev/graph-query"
+                                ?"https://ominous-computing-machine-699x9777xjj62r7qx-8000.app.github.dev/graph-query"
                                 :selectedRag==="evaluate"
-                                ?"https://bookish-chainsaw-4jjpj9995j65fjpwp-8000.app.github.dev/evaluate-all"
+                                ?"https://ominous-computing-machine-699x9777xjj62r7qx-8000.app.github.dev/evaluate-all"
                                 :selectedRag==="benchmark"
-                                ?"https://bookish-chainsaw-4jjpj9995j65fjpwp-8000.app.github.dev/evaluate-quality-benchmark"
+                                ?"https://ominous-computing-machine-699x9777xjj62r7qx-8000.app.github.dev/evaluate-quality-benchmark"
 
-                                :"https://bookish-chainsaw-4jjpj9995j65fjpwp-8000.app.github.dev/query";
+                                :"https://ominous-computing-machine-699x9777xjj62r7qx-8000.app.github.dev/query";
             const response = await axios.post(endpoint,
                 {
                     query: query
