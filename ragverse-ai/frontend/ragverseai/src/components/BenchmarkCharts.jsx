@@ -85,6 +85,7 @@ function BenchmarkCharts({ benchmarkData }) {
 
                         <Bar
                             dataKey={dataKey}
+                            fill="#10B981"
                         />
 
                     </BarChart>

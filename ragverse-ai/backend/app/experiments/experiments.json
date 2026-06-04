@@ -1,0 +1,25 @@
+[
+    {
+        "query": "What is style transfer?",
+        "rag_type": "fusion_rag",
+        "answer": "Style transfer is...",
+        "total_time": 0.56
+    },
+    {
+        "query": "What is style transfer?",
+        "rag_type": "fusion_rag",
+        "answer": "Style transfer is...",
+        "total_time": 0.56
+    },
+    {
+        "query": "What is teh archeitecture of style transfer?",
+        "rag_type": "graph_rag",
+        "answer": "I could not find relevant information.",
+        "metrics": {
+            "retrieval_time": 0.02,
+            "generation_time": 0.15,
+            "total_time": 0.35
+        },
+        "timestamp": "6/5/2026, 12:38:05 AM"
+    }
+]

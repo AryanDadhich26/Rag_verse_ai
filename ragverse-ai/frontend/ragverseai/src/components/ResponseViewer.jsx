@@ -1,4 +1,45 @@
+import axios from "axios";
+
 function ResponseViewer({responseData}){
+    const saveExperiment = async () => {
+
+        if (!responseData) return;
+
+        try {
+
+            const experiment = {
+
+                query: responseData.query,
+
+                rag_type: responseData.rag_type,
+
+                answer: responseData.answer,
+
+                metrics: responseData.metrics,
+
+                timestamp: new Date()
+                    .toLocaleString()
+
+            };
+
+            await axios.post(
+                "https://cuddly-pancake-v6w6wv4g59rfpj9g-8000.app.github.dev/save-experiment",
+                experiment
+            );
+
+            alert(
+                "Experiment Saved Successfully"
+            );
+
+        } catch (error) {
+
+            console.error(error);
+
+            alert(
+                "Failed To Save Experiment"
+            );
+        }
+    };
     if (!responseData){
         return (
             <div className="bg-white p-6 rounded-xl shadow">
@@ -17,6 +58,7 @@ function ResponseViewer({responseData}){
 
             <h2 className="text-2xl font-bold mb-4">
                 Generated Answer
+                
                 <div className="grid grid-cols-3 gap-4 mb-6">
 
     <div className="bg-blue-50 p-4 rounded-xl">
@@ -358,7 +400,23 @@ function ResponseViewer({responseData}){
             <p className="mb-6">
                 {responseData.answer}
             </p>
+            <div className="mb-6">
 
+                <button
+                    onClick={saveExperiment}
+                    className="
+                        bg-green-600
+                        text-white
+                        px-4
+                        py-2
+                        rounded-lg
+                        hover:bg-green-700
+                    "
+                >
+                    💾 Save Experiment
+                </button>
+
+            </div>
             <h3 className="text-xl font-semibold mb-2">
                 Retrieved Chunks
             </h3>
@@ -383,31 +441,30 @@ function ResponseViewer({responseData}){
 
                         </div>
 
-                        <p className="text-gray-700 leading-relaxed">
-                            <p className="text-sm text-blue-600 font-medium mb-2">
+                        <div className="text-gray-700 leading-relaxed">
 
-                            Similarity Score:
-                            {chunk.score}
+    <p className="text-sm text-blue-600 font-medium mb-2">
+        Similarity Score:
+        {chunk.score}
+    </p>
 
-                            </p>
-                            <span
-                                className={`text-xs px-2 py-1 rounded-full ${
-                                    chunk.score > 0.7
-                                        ? "bg-green-100 text-green-700"
-                                        : "bg-yellow-100 text-yellow-700"
-                                }`}
-                            >
-                                {chunk.score > 0.7
-                                    ? "High Confidence"
-                                    : "Medium Confidence"}
-                            </span>
-                            <p className="text-gray-700 leading-relaxed">
+    <span
+        className={`text-xs px-2 py-1 rounded-full ${
+            chunk.score > 0.7
+                ? "bg-green-100 text-green-700"
+                : "bg-yellow-100 text-yellow-700"
+        }`}
+    >
+        {chunk.score > 0.7
+            ? "High Confidence"
+            : "Medium Confidence"}
+    </span>
 
-                                {chunk.chunk}
+    <p className="text-gray-700 leading-relaxed mt-2">
+        {chunk.chunk}
+    </p>
 
-                            </p>
-                        </p>
-
+</div>
                     </div>
 
                 ))}
