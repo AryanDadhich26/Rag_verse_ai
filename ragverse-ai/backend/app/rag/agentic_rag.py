@@ -33,6 +33,20 @@ def agentic_rag(query: str):
     total_start=time.time()
 
     selected_strategy=decide_strategy(query)
+    pipeline_steps=[]
+
+    pipeline_steps.append(
+        {
+            "step":"Task Analysis",
+            "data":{"query":query}        }
+    )
+
+    pipeline_steps.append(
+        {
+            "step":"Strategy Decision",
+            "data":{"selected_strategy":selected_strategy}
+        }
+    )
     if selected_strategy == "adaptive":
 
         result = adaptive_rag(query)
@@ -46,6 +60,15 @@ def agentic_rag(query: str):
     else:
 
         result = run_naive_rag(query)
+
+    result["pipeline_steps"] = (
+        pipeline_steps
+        +
+        result.get(
+            "pipeline_steps",
+            []
+        )
+    )
 
     total_time=round(time.time()-total_start,2)
 
