@@ -98,85 +98,79 @@ function BenchmarkCharts({ benchmarkData }) {
 
     return (
 
-        <div className="bg-white p-6 rounded-xl shadow mt-6">
+    <div className="bg-white p-6 rounded-xl shadow mt-6">
 
-            <h2 className="text-2xl font-bold mb-6">
+        <h2 className="text-2xl font-bold mb-6">
+            Benchmark Analytics
+        </h2>
 
-                Benchmark Analytics
+        <div className="bg-green-50 p-4 rounded-lg mb-6">
 
-            </h2>
+            <h3 className="text-xl font-bold mb-3">
+                🏆 Benchmark Summary
+            </h3>
 
-            {
-                renderChart(
-                    "Overall Score",
-                    "overall_score"
-                )
-            }
+            <p>
+                <strong>Best Overall:</strong>{" "}
+                {bestOverall.rag_type}
+                {" "}
+                ({bestOverall.overall_score})
+            </p>
 
-            {
-                renderChart(
-                    "Relevance",
-                    "relevance"
-                )
-            }
+            <p>
+                <strong>Most Relevant:</strong>{" "}
+                {mostRelevant.rag_type}
+                {" "}
+                ({mostRelevant.relevance})
+            </p>
 
-            {
-                renderChart(
-                    "Faithfulness",
-                    "faithfulness"
-                )
-            }
+            <p>
+                <strong>Most Faithful:</strong>{" "}
+                {mostFaithful.rag_type}
+                {" "}
+                ({mostFaithful.faithfulness})
+            </p>
 
-            {
-    renderChart(
-        "Completeness",
-        "completeness"
-    )
-}
+            <p>
+                <strong>Most Complete:</strong>{" "}
+                {mostComplete.rag_type}
+                {" "}
+                ({mostComplete.completeness})
+            </p>
 
-<div className="bg-green-50 p-4 rounded-lg mt-6">
+        </div>
 
-    <h3 className="text-xl font-bold mb-3">
-        🏆 Benchmark Summary
-    </h3>
+        {
+            renderChart(
+                "Overall Score",
+                "overall_score"
+            )
+        }
 
-    <p>
-        <strong>Best Overall:</strong>
-        {" "}
-        {bestOverall.rag_type}
-        {" "}
-        ({bestOverall.overall_score})
-    </p>
+        {
+            renderChart(
+                "Relevance",
+                "relevance"
+            )
+        }
 
-    <p>
-        <strong>Most Relevant:</strong>
-        {" "}
-        {mostRelevant.rag_type}
-        {" "}
-        ({mostRelevant.relevance})
-    </p>
+        {
+            renderChart(
+                "Faithfulness",
+                "faithfulness"
+            )
+        }
 
-    <p>
-        <strong>Most Faithful:</strong>
-        {" "}
-        {mostFaithful.rag_type}
-        {" "}
-        ({mostFaithful.faithfulness})
-    </p>
+        {
+            renderChart(
+                "Completeness",
+                "completeness"
+            )
+        }
 
-    <p>
-        <strong>Most Complete:</strong>
-        {" "}
-        {mostComplete.rag_type}
-        {" "}
-        ({mostComplete.completeness})
-    </p>
+    </div>
 
-</div>
-</div>
-
-        
-    );
+);
 }
 
 export default BenchmarkCharts;

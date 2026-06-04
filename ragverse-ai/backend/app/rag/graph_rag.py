@@ -19,6 +19,15 @@ def graph_rag(query: str):
     graph=build_graph(chunk_texts)
     pipeline_steps.append(
         {
+            "step":"Entity Extraction",
+            "data":{
+                "entities_found":
+                len(graph.nodes)
+            }
+        }
+    )
+    pipeline_steps.append(
+        {
             "step":"Graph Construction",
             "data":{
                 "nodes":len(graph.nodes),

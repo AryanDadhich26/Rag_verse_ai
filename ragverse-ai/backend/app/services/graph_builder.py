@@ -1,21 +1,21 @@
 import networkx as nx
-
-
+import spacy
+nlp=spacy.load(
+    "en_core_web_sm"
+)
 def build_graph(chunks):
     graph=nx.Graph()
     for chunk in chunks:
-        words=chunk.split()
-        entities=[]
-        for word in words:
-            clean_words=word.strip(
-                ".,;:!()[]{}"
-            )
+        doc = nlp(chunk)
 
-            if (
-                clean_words.istitle()
-                and len(clean_words)>3
-            ):
-                entities.append(clean_words)
+        entities = list(
+            dict.fromkeys(
+                [
+                    ent.text.strip()
+                    for ent in doc.ents
+                ]
+            )
+        )
 
         for i in range(len(entities)-1):
             graph.add_edge(
