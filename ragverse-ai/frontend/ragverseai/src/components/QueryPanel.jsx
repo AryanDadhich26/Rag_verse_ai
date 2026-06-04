@@ -11,35 +11,35 @@ function QueryPanel({setResponseData,queryHistory,setQueryHistory,setComparisonD
         try{
             const endpoint = selectedRag === "hybrid"
 
-                                ? "https://ominous-computing-machine-699x9777xjj62r7qx-8000.app.github.dev/hybrid-query"
+                                ? "https://cuddly-pancake-v6w6wv4g59rfpj9g-8000.app.github.dev/hybrid-query"
 
                                 : selectedRag === "compare"
 
-                                ? "https://ominous-computing-machine-699x9777xjj62r7qx-8000.app.github.dev/compare-rags"
+                                ? "https://cuddly-pancake-v6w6wv4g59rfpj9g-8000.app.github.dev/compare-rags"
                                 
                                 :selectedRag==="adaptive"
                                 
-                                ?"https://ominous-computing-machine-699x9777xjj62r7qx-8000.app.github.dev/adaptive-query"
+                                ?"https://cuddly-pancake-v6w6wv4g59rfpj9g-8000.app.github.dev/adaptive-query"
                                 :selectedRag==="agentic"
-                                ?"https://ominous-computing-machine-699x9777xjj62r7qx-8000.app.github.dev/agentic-query"
+                                ?"https://cuddly-pancake-v6w6wv4g59rfpj9g-8000.app.github.dev/agentic-query"
                                 :selectedRag==="corrective"
-                                ?"https://ominous-computing-machine-699x9777xjj62r7qx-8000.app.github.dev/corrective-query"
+                                ?"https://cuddly-pancake-v6w6wv4g59rfpj9g-8000.app.github.dev/corrective-query"
                                 :selectedRag==="self"
-                                ?"https://ominous-computing-machine-699x9777xjj62r7qx-8000.app.github.dev/self-query"
+                                ?"https://cuddly-pancake-v6w6wv4g59rfpj9g-8000.app.github.dev/self-query"
                                 :selectedRag==="fusion"
-                                ?"https://ominous-computing-machine-699x9777xjj62r7qx-8000.app.github.dev/fusion-query"
+                                ?"https://cuddly-pancake-v6w6wv4g59rfpj9g-8000.app.github.dev/fusion-query"
                                 :selectedRag==="rerank"
-                                ?"https://ominous-computing-machine-699x9777xjj62r7qx-8000.app.github.dev/rerank-query"
+                                ?"https://cuddly-pancake-v6w6wv4g59rfpj9g-8000.app.github.dev/rerank-query"
                                 :selectedRag==="multihop"
-                                ?"https://ominous-computing-machine-699x9777xjj62r7qx-8000.app.github.dev/multihop-query"
+                                ?"https://cuddly-pancake-v6w6wv4g59rfpj9g-8000.app.github.dev/multihop-query"
                                 :selectedRag==="graph"
-                                ?"https://ominous-computing-machine-699x9777xjj62r7qx-8000.app.github.dev/graph-query"
+                                ?"https://cuddly-pancake-v6w6wv4g59rfpj9g-8000.app.github.dev/graph-query"
                                 :selectedRag==="evaluate"
-                                ?"https://ominous-computing-machine-699x9777xjj62r7qx-8000.app.github.dev/evaluate-all"
+                                ?"https://cuddly-pancake-v6w6wv4g59rfpj9g-8000.app.github.dev/evaluate-all"
                                 :selectedRag==="benchmark"
-                                ?"https://ominous-computing-machine-699x9777xjj62r7qx-8000.app.github.dev/evaluate-quality-benchmark"
+                                ?"https://cuddly-pancake-v6w6wv4g59rfpj9g-8000.app.github.dev/evaluate-quality-benchmark"
 
-                                :"https://ominous-computing-machine-699x9777xjj62r7qx-8000.app.github.dev/query";
+                                :"https://cuddly-pancake-v6w6wv4g59rfpj9g-8000.app.github.dev/query";
             const response = await axios.post(endpoint,
                 {
                     query: query

@@ -2,76 +2,99 @@
 
 from app.services.retrieval import retrieve_chunks
 from app.services.generation import generate_response
+
+from app.rag.naive_rag import run_naive_rag
+from app.rag.fusion_rag import fusion_rag
+from app.rag.multihop_rag import multihop_rag
 import time
 
-def classify_query(query: str):
+def classify_query(query:str):
+
     query=query.lower()
 
-    complex_keyword=["compare",
-        "difference",
-        "architecture",
-        "advantages",
-        "disadvantages",
-        "explain in detail",
-        "pipeline",
-        "workflow"
+    if any(
+        keyword in query
+        for keyword in [
+            "compare",
+            "difference",
+            "advantages",
+            "disadvantages"
         ]
-    for keyword in complex_keyword:
-         if keyword in query:
-            return "complex"
+    ):
+        return "complex"
+
+    elif any(
+        keyword in query
+        for keyword in [
+            "architecture",
+            "workflow",
+            "pipeline",
+            "implementation",
+            "steps",
+            "process"
+        ]
+    ):
+        return "medium"
+
     return "simple"
 def adaptive_rag(query:str):
+
     start_time=time.time()
+
     query_type=classify_query(query)
 
-    retrieval_start=time.time()
-
     if query_type=="simple":
-        top_k=2
+
+        result=run_naive_rag(query)
+
+        selected_strategy="naive_rag"
+
+    elif query_type=="medium":
+
+        result=fusion_rag(query)
+
+        selected_strategy="fusion_rag"
+
     else:
-        top_k=5
-    retrieved_chunks=retrieve_chunks(
-        query=query,
-        top_k=top_k
-    )
 
-    retrieval_end=time.time()
-    generation_start=time.time()
+        result=multihop_rag(query)
 
-    
+        selected_strategy="multihop_rag"
 
-    answer=generate_response(
-        query=query,
-        retrieved_chunks=retrieved_chunks
-    )
+    adaptive_steps=[
 
-    generation_end=time.time()
+        {
+            "step":"Query Analysis",
+            "data":{
+                "query_type":query_type
+            }
+        },
 
-    total_end=time.time()
-
-    return {
-        "query":query,
-        "query_type":query_type,
-        "chunks_used":top_k,
-        "retrieved_chunks":retrieved_chunks,
-        "answer":answer,
-        "rag_type":"adaptive_rag",
-        "metrics": {
-
-            "retrieval_time": round(
-                retrieval_end - retrieval_start,
-                2
-            ),
-
-            "generation_time": round(
-                generation_end - generation_start,
-                2
-            ),
-
-            "total_time": round(
-                total_end - start_time,
-                2
-            )
+        {
+            "step":"Strategy Selection",
+            "data":selected_strategy
         }
 
-    }
+    ]
+
+    result["pipeline_steps"]=(
+        adaptive_steps
+        +
+        result.get(
+            "pipeline_steps",
+            []
+        )
+    )
+
+    result["selected_strategy"]=(
+        selected_strategy
+    )
+
+    result["rag_type"]="adaptive_rag"
+
+    result["adaptive_time"]=round(
+        time.time()-start_time,
+        2
+    )
+
+    return result

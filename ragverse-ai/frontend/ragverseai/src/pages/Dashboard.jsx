@@ -9,6 +9,7 @@ import CompareView from "../components/CompareView";
 import EvaluationDashboard from "../components/EvaluationDashboard";
 import QualityLeaderboard from "../components/QualityLeaderboard";
 import PipelineExplorer from "../components/PipelineExplorer";
+import BenchmarkCharts from "../components/BenchmarkCharts";
 function Dashboard(){
     const[responseData, setResponseData] = useState(null);
     const[queryHistory, setQueryHistory] = useState([]);
@@ -52,6 +53,9 @@ function Dashboard(){
                 evaluationData={evaluationData}
               />
               <QualityLeaderboard
+                benchmarkData={benchmarkData}
+              />
+              <BenchmarkCharts
                 benchmarkData={benchmarkData}
               />
               <div className="mt-6">
