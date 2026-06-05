@@ -4,6 +4,8 @@ from app.api.upload import router as upload_router
 from app.api.query import router as query_router
 from app.api.evaluation import router as evaluation_router
 from app.api.experiments import router as experiment_router
+from app.api.datasets import router as datasets_router
+from app.api.export import router as export_router
 app=FastAPI(title='RAGVerse AI')
 app.add_middleware(
     CORSMiddleware,
@@ -23,3 +25,5 @@ app.include_router(upload_router)
 app.include_router(query_router)
 app.include_router(evaluation_router)
 app.include_router(experiment_router)
+app.include_router(datasets_router)
+app.include_router(export_router)

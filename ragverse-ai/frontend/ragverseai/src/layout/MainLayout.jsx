@@ -1,25 +1,35 @@
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 
-function MainLayout({children}){
+function MainLayout({
+    children,
+    activePage,
+    setActivePage
+}) {
+
     return (
 
-    <div className="h-screen flex flex-col">
+        <div className="h-screen flex flex-col">
 
-      <Navbar />
+            <Navbar />
 
-      <div className="flex flex-1">
+            <div className="flex flex-1">
 
-        <Sidebar />
+                <Sidebar
+                    activePage={activePage}
+                    setActivePage={setActivePage}
+                />
 
-        <main className="flex-1 p-6 bg-gray-50 overflow-auto">
-          {children}
-        </main>
+                <main className="flex-1 p-6 bg-gray-50 overflow-auto">
 
-      </div>
+                    {children}
 
-    </div>
-  );
+                </main>
+
+            </div>
+
+        </div>
+    );
 }
 
 export default MainLayout;

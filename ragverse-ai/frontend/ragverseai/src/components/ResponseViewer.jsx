@@ -23,7 +23,7 @@ function ResponseViewer({responseData}){
             };
 
             await axios.post(
-                "https://cuddly-pancake-v6w6wv4g59rfpj9g-8000.app.github.dev/save-experiment",
+                "https://solid-pancake-4jjpj9995jxvc764-8000.app.github.dev/save-experiment",
                 experiment
             );
 

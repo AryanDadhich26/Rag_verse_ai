@@ -1,0 +1,5 @@
+Query,RAG Type,Answer,Total Time,Timestamp
+What is style transfer?,fusion_rag,Style transfer is...,,
+What is style transfer?,fusion_rag,Style transfer is...,,
+What is teh archeitecture of style transfer?,graph_rag,I could not find relevant information.,0.35,"6/5/2026, 12:38:05 AM"
+What do you understand by style transfer?,naive_rag,"Style transfer is a computer vision technique that allows the recomposition of the content of an image in the style of another. It takes two images - a content image and a style reference image - and blends them together, resulting in an output image that retains the core elements of the content image but appears to be ""painted"" in the style of the style reference image.",0.33,"6/5/2026, 11:34:36 PM"

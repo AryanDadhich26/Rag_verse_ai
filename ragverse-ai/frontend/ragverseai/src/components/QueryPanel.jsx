@@ -11,35 +11,35 @@ function QueryPanel({setResponseData,queryHistory,setQueryHistory,setComparisonD
         try{
             const endpoint = selectedRag === "hybrid"
 
-                                ? "https://cuddly-pancake-v6w6wv4g59rfpj9g-8000.app.github.dev/hybrid-query"
+                                ? "https://solid-pancake-4jjpj9995jxvc764-8000.app.github.dev/hybrid-query"
 
                                 : selectedRag === "compare"
 
-                                ? "https://cuddly-pancake-v6w6wv4g59rfpj9g-8000.app.github.dev/compare-rags"
+                                ? "https://solid-pancake-4jjpj9995jxvc764-8000.app.github.dev/compare-rags"
                                 
                                 :selectedRag==="adaptive"
                                 
-                                ?"https://cuddly-pancake-v6w6wv4g59rfpj9g-8000.app.github.dev/adaptive-query"
+                                ?"https://solid-pancake-4jjpj9995jxvc764-8000.app.github.dev/adaptive-query"
                                 :selectedRag==="agentic"
-                                ?"https://cuddly-pancake-v6w6wv4g59rfpj9g-8000.app.github.dev/agentic-query"
+                                ?"https://solid-pancake-4jjpj9995jxvc764-8000.app.github.dev/agentic-query"
                                 :selectedRag==="corrective"
-                                ?"https://cuddly-pancake-v6w6wv4g59rfpj9g-8000.app.github.dev/corrective-query"
+                                ?"https://solid-pancake-4jjpj9995jxvc764-8000.app.github.dev/corrective-query"
                                 :selectedRag==="self"
-                                ?"https://cuddly-pancake-v6w6wv4g59rfpj9g-8000.app.github.dev/self-query"
+                                ?"https://solid-pancake-4jjpj9995jxvc764-8000.app.github.dev/self-query"
                                 :selectedRag==="fusion"
-                                ?"https://cuddly-pancake-v6w6wv4g59rfpj9g-8000.app.github.dev/fusion-query"
+                                ?"https://solid-pancake-4jjpj9995jxvc764-8000.app.github.dev/fusion-query"
                                 :selectedRag==="rerank"
-                                ?"https://cuddly-pancake-v6w6wv4g59rfpj9g-8000.app.github.dev/rerank-query"
+                                ?"https://solid-pancake-4jjpj9995jxvc764-8000.app.github.dev/rerank-query"
                                 :selectedRag==="multihop"
-                                ?"https://cuddly-pancake-v6w6wv4g59rfpj9g-8000.app.github.dev/multihop-query"
+                                ?"https://solid-pancake-4jjpj9995jxvc764-8000.app.github.dev/multihop-query"
                                 :selectedRag==="graph"
-                                ?"https://cuddly-pancake-v6w6wv4g59rfpj9g-8000.app.github.dev/graph-query"
+                                ?"https://solid-pancake-4jjpj9995jxvc764-8000.app.github.dev/graph-query"
                                 :selectedRag==="evaluate"
-                                ?"https://cuddly-pancake-v6w6wv4g59rfpj9g-8000.app.github.dev/evaluate-all"
+                                ?"https://solid-pancake-4jjpj9995jxvc764-8000.app.github.dev/evaluate-all"
                                 :selectedRag==="benchmark"
-                                ?"https://cuddly-pancake-v6w6wv4g59rfpj9g-8000.app.github.dev/evaluate-quality-benchmark"
+                                ?"https://solid-pancake-4jjpj9995jxvc764-8000.app.github.dev/evaluate-quality-benchmark"
 
-                                :"https://cuddly-pancake-v6w6wv4g59rfpj9g-8000.app.github.dev/query";
+                                :"https://solid-pancake-4jjpj9995jxvc764-8000.app.github.dev/query";
             const response = await axios.post(endpoint,
                 {
                     query: query
