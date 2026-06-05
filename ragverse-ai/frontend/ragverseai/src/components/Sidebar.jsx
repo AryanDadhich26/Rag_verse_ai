@@ -15,7 +15,8 @@ function Sidebar({
 
         "Datasets",
 
-        "Saved Experiments"
+        "Saved Experiments",
+        "Architecture"
     ];
 
     return (

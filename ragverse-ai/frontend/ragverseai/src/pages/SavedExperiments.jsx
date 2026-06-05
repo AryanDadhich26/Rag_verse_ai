@@ -4,6 +4,8 @@ import axios from "axios";
 function SavedExperiments() {
 
     const [experiments, setExperiments] = useState([]);
+    const [selectedExperiment, setSelectedExperiment] =
+    useState(null);
 
     const [loading, setLoading] = useState(true);
 
@@ -51,7 +53,10 @@ function SavedExperiments() {
 
         );
     }
-
+    console.log(
+    "selectedExperiment:",
+    selectedExperiment
+);
     return (
 
         <div className="p-6">
@@ -63,7 +68,7 @@ function SavedExperiments() {
         Saved Experiments
 
     </h1>
-
+        
     <div className="flex gap-3">
 
         <a
@@ -101,7 +106,76 @@ function SavedExperiments() {
     </div>
 
 </div>
+            {
+    selectedExperiment && (
 
+        <div
+            className="
+                bg-white
+                p-6
+                rounded-xl
+                shadow
+                mt-4
+                mb-6
+            "
+        >
+
+            <h2 className="text-2xl font-bold mb-4">
+                Experiment Details
+            </h2>
+
+            <p>
+                <strong>Query:</strong>
+                {" "}
+                {selectedExperiment.query}
+            </p>
+
+            <p className="mt-2">
+                <strong>RAG Type:</strong>
+                {" "}
+                {selectedExperiment.rag_type}
+            </p>
+
+            <p className="mt-2">
+                <strong>Answer:</strong>
+            </p>
+
+            <div
+                className="
+                    bg-gray-50
+                    p-4
+                    rounded
+                    mt-2
+                "
+            >
+                {selectedExperiment.answer}
+            </div>
+
+            <p className="mt-4">
+                <strong>Total Time:</strong>
+                {" "}
+                {selectedExperiment.total_time}s
+            </p>
+
+            <button
+                onClick={() =>
+                    setSelectedExperiment(null)
+                }
+                className="
+                    mt-4
+                    bg-red-500
+                    text-white
+                    px-4
+                    py-2
+                    rounded-lg
+                "
+            >
+                Close
+            </button>
+
+        </div>
+    )
+}
             {
                 experiments.length === 0 ? (
 
@@ -198,6 +272,22 @@ function SavedExperiments() {
                                             </p>
 
                                         </div>
+                                        <button
+                                            onClick={() => {
+                                                console.log(experiment);
+                                                setSelectedExperiment(experiment);
+                                            }}
+                                            className="
+                                                mt-4
+                                                bg-blue-600
+                                                text-white
+                                                px-4
+                                                py-2
+                                                rounded-lg
+                                            "
+                                        >
+                                            View Details
+                                        </button>
 
                                     </div>
                                 )
@@ -208,8 +298,123 @@ function SavedExperiments() {
 
                 )
             }
+            {/* {
+    selectedExperiment && (
+
+        <div className="
+            bg-white
+            p-6
+            rounded-xl
+            shadow
+            mt-6
+        ">
+
+            <h2 className="text-2xl font-bold mb-4">
+
+                Experiment Details
+
+            </h2>
+
+            <p>
+                <strong>Query:</strong>
+                {" "}
+                {selectedExperiment.query}
+            </p>
+
+            <p className="mt-2">
+                <strong>RAG:</strong>
+                {" "}
+                {selectedExperiment.rag_type}
+            </p>
+
+            <p className="mt-2">
+                <strong>Timestamp:</strong>
+                {" "}
+                {selectedExperiment.timestamp}
+            </p>
+
+            <p className="mt-2">
+                <strong>Answer:</strong>
+            </p>
+
+            <div className="
+                bg-gray-50
+                p-4
+                rounded
+                mt-2
+            ">
+                {selectedExperiment.answer}
+            </div>
+
+            <div className="mt-4">
+
+                <h3 className="font-bold mb-2">
+
+                    Metrics
+
+                </h3>
+
+                <p>
+                    Retrieval:
+                    {" "}
+                    {
+                        selectedExperiment
+                        .metrics
+                        ?.retrieval_time
+                    }s
+                </p>
+
+                <p>
+                    Generation:
+                    {" "}
+                    {
+                        selectedExperiment
+                        .metrics
+                        ?.generation_time
+                    }s
+                </p>
+
+                <p>
+                    Total:
+                    {" "}
+                    {
+                        selectedExperiment
+                        .metrics
+                        ?.total_time
+                    }s
+                </p>
+
+            </div>
 
         </div>
+    )
+} */}
+{
+    selectedExperiment && (
+        <div className="bg-red-500 text-white p-10 mt-6">
+            DETAILS PANEL WORKING
+
+            <br />
+
+            {selectedExperiment.query}
+        </div>
+    )
+}    <button
+        onClick={() =>
+            setSelectedExperiment(null)
+        }
+        className="
+            mt-4
+            bg-red-500
+            text-white
+            px-4
+            py-2
+            rounded-lg
+        "
+    >
+        Close
+    </button>
+            </div>
     );
 }
 

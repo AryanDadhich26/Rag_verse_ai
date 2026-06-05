@@ -5,6 +5,7 @@ import MainLayout from "./layout/MainLayout";
 import Dashboard from "./pages/Dashboard";
 import SavedExperiments from "./pages/SavedExperiments";
 import DatasetManager from "./pages/DatasetManager";
+import Architecture from "./pages/Architecture";
 function App() {
 
     const [activePage, setActivePage] =
@@ -16,6 +17,9 @@ function App() {
 
             case "Saved Experiments":
                 return <SavedExperiments />;
+
+            case "Architecture":
+                return <Architecture />;
 
             case "Datasets":
                 return <DatasetManager />;
