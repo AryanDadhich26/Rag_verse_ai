@@ -1,3 +1,5 @@
+import {useEffect, useState} from "react";
+import axios from "axios";
 function Architecture() {
 
     const stages = [
@@ -22,6 +24,32 @@ function Architecture() {
 
         "Export Engine"
     ];
+    const [stats, setStats] = useState(null);
+    useEffect(() => {
+
+    fetchStats();
+
+}, []);
+
+const fetchStats = async () => {
+
+    try {
+
+        const response =
+            await axios.get(
+                "https://solid-pancake-4jjpj9995jxvc764-8000.app.github.dev/stats"
+            );
+
+        setStats(
+            response.data
+        );
+
+    } catch (error) {
+
+        console.error(error);
+
+    }
+};
 
     return (
 
@@ -90,7 +118,9 @@ function Architecture() {
                     </h3>
 
                     <p className="text-3xl font-bold text-blue-600">
-                        10
+                        {
+                            stats?.rag_count || 0
+                        }
                     </p>
 
                 </div>
@@ -102,7 +132,9 @@ function Architecture() {
                     </h3>
 
                     <p className="text-3xl font-bold text-green-600">
-                        ✓
+                        {
+                            stats?.dataset_count || 0
+                        }
                     </p>
 
                 </div>
@@ -114,7 +146,9 @@ function Architecture() {
                     </h3>
 
                     <p className="text-3xl font-bold text-purple-600">
-                        ✓
+                        {
+                            stats?.experiment_count || 0
+                        }
                     </p>
 
                 </div>
@@ -126,7 +160,9 @@ function Architecture() {
                     </h3>
 
                     <p className="text-3xl font-bold text-orange-600">
-                        ✓
+                        {
+                            stats?.export_count || 0
+                        }
                     </p>
 
                 </div>
